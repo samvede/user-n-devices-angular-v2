@@ -1,0 +1,40 @@
+<h1>My User N Devices Micro Service Add Device Page</h1>
+<table>
+    <tbody>
+        <tr>
+            <td colspan="2">
+                <hr />
+            </td>
+        </tr>
+        <tr>
+            <td>Device User</td>
+            <td><input [(ngModel)]='InputDeviceUser' /></td>
+        </tr>
+        <tr>
+            <td>Device Name </td>
+            <td><input [(ngModel)]='InputDeviceName'/></td>
+        </tr>
+
+        <tr>
+            <td>Device id </td>
+            <td><input [(ngModel)]='InputDeviceId'/></td>
+        </tr>
+
+        <tr>
+            <td>Device Model Number </td>
+            <td><input [(ngModel)]='InputDeviceModelNumber'/></td>
+        </tr>
+        <tr>
+            <td class='command' colspan="2">
+                 <button  (click)='addDevice()'>Register Device</button>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <hr />
+            </td>
+        </tr>
+        
+    </tbody>
+  </table>
+

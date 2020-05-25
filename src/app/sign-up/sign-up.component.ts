@@ -1,27 +1,20 @@
-import { Component } from '@angular/core'
+import { Component, OnInit } from '@angular/core';
 import { HttpClientModule }    from '@angular/common/http'
 import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http'
 import { Injectable } from '@angular/core'
 import { Observable, throwError } from 'rxjs'
 import { retry, catchError } from 'rxjs/operators'
-import { userPostData } from './user-n-device-class'
-import {DevicePostData} from './user-n-device-class'
+import { userPostData } from '../user-n-device-class'
+import {DevicePostData} from '../user-n-device-class'
 import { error } from 'protractor'
-import { Router, ActivatedRoute, ParamMap } from '@angular/router';
-
 
 @Component({
-  selector: 'app-root',
-    templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  selector: 'app-sign-up',
+  templateUrl: './sign-up.component.html',
+  styleUrls: ['./sign-up.component.css']
 })
+export class SignUpComponent implements OnInit {
 
-
-
-export class AppComponent {
- 
-  LoggedInUser: string;
-  LoginStatus: boolean;
   InputUserName: string;
   InputPassword: string;
   InputUserMobileNumber: number;
@@ -109,8 +102,9 @@ export class AppComponent {
     console.log("santoshd");
     this.http.post(this.apiURL + '/users',UserData, this.httpOptions)
     .subscribe({
-      next: data=> console.log (UserData.userName),
-      error: error => console.log('There was an error!', error)}
+      next: data=> console.log (UserData),
+      error: error => error => {this.handleError(error,"Server error");console.log(error);
+      this.InputUserMobileNumber=undefined;this.InputPassword=undefined;this.InputUserId=undefined;this.InputUserName=undefined;}}
     )
      
   }  
@@ -163,5 +157,8 @@ handleError(error, errMsg: string) {
      window.alert(errorMessage);
      return throwError(errorMessage);
 } 
+
+  ngOnInit(): void {
+  }
 
 }

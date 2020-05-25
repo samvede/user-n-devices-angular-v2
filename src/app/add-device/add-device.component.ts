@@ -1,27 +1,21 @@
-import { Component } from '@angular/core'
+import { Component, OnInit } from '@angular/core';
 import { HttpClientModule }    from '@angular/common/http'
 import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http'
 import { Injectable } from '@angular/core'
 import { Observable, throwError } from 'rxjs'
 import { retry, catchError } from 'rxjs/operators'
-import { userPostData } from './user-n-device-class'
-import {DevicePostData} from './user-n-device-class'
+import { userPostData } from '../user-n-device-class'
+import {DevicePostData} from '../user-n-device-class'
 import { error } from 'protractor'
-import { Router, ActivatedRoute, ParamMap } from '@angular/router';
-
+import {LoggedInUser} from '../user-n-device-class'
 
 @Component({
-  selector: 'app-root',
-    templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  selector: 'app-add-device',
+  templateUrl: './add-device.component.html',
+  styleUrls: ['./add-device.component.css']
 })
+export class AddDeviceComponent implements OnInit {
 
-
-
-export class AppComponent {
- 
-  LoggedInUser: string;
-  LoginStatus: boolean;
   InputUserName: string;
   InputPassword: string;
   InputUserMobileNumber: number;
@@ -116,18 +110,18 @@ export class AppComponent {
   }  
    
   // HttpClient API put() method => Add new device
-  //addDevice() {
-   // this.DeviceData.deviceId = 0;
-   // this.DeviceData.deviceModelNumber = this.InputDeviceModelNumber;
-   // this.DeviceData.deviceUser = this.InputDeviceUser;
-   // this.DeviceData.deviceName = this.InputDeviceName;
-
-   // return this.http.post(this.apiURL + '/devices',this.DeviceData, this.httpOptions)
-   //   .pipe(
-   //     retry(1),
-   //     catchError(this.handleError)
-   //   )
-   // }  
+  addDevice() {
+    var DeviceData = new DevicePostData(this.InputDeviceId, this.InputDeviceName, this.InputDeviceModelNumber, this.InputDeviceUser);          
+          
+    console.log("santoshd");
+    this.http.post(this.apiURL + '/devices',DeviceData, this.httpOptions)
+    .subscribe({
+      next: data=> console.log (DeviceData),
+      error: error => {this.handleError(error,"Server error");console.log(error);
+      this.InputDeviceId=undefined;this.InputDeviceName=undefined;this.InputDeviceModelNumber=undefined;this.InputDeviceUser=undefined;} 
+    }
+    )
+  }  
 
   // HttpClient API delete() method => Remove Device
   //removeDevice(UserName: string, deviceId: number, deviceName: string, deviceModelNumber: string) {
@@ -163,5 +157,8 @@ handleError(error, errMsg: string) {
      window.alert(errorMessage);
      return throwError(errorMessage);
 } 
+
+  ngOnInit(): void {
+  }
 
 }

@@ -1,35 +1,10 @@
-<h1>My User N Devices Micro Service</h1>
-<table>
-    <tbody>
-        <tr>
-            <td colspan="2">
-                <hr />
-            </td>
-        </tr>
-        <tr>
-            <td>User Name</td>
-            <td><input [(ngModel)]='InputUserName' /></td>
-        </tr>
-        <tr>
-            <td>Password </td>
-            <td><input ng-hide="showpassword" type="password" ng-model="password" [(ngModel)]='InputPassword'/></td>
-        </tr>
+<h1>My User N Devices Micro Service -v10</h1>
+<body style="background-color:skyblue;"></body>
 
-        <tr>
-            <td>Mobile Number </td>
-            <td><input [(ngModel)]='InputUserMobileNumber'/></td>
-        </tr>
-        <tr>
-            <td class='command' colspan="2">
-                <button (click)='addUser()'>ADD USER</button>
-                <button (click)='getUserByName(InputUserName, InputPassword)'>GET USER BY NAME</button>
-            </td>
-        </tr>
-        <tr>
-            <td colspan="2">
-                <hr />
-            </td>
-        </tr>
-        
-    </tbody>
-  </table>
+<nav>
+    <a routerLink="/Sign up"><button>REGISTER</button></a>
+    <a routerLink="/Login"><button>LOGIN</button></a>
+    <a routerLink="/Device Management"><button>DEVICE MANAGEMENT</button></a>
+    <a routerLink="/Device Dashboard"><button>DEVICE DASHBOARD</button></a>
+    <router-outlet></router-outlet>
+</nav>

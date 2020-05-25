@@ -1,0 +1,23 @@
+<h1>Device Dashboard</h1>
+<hr/>
+<h2>Device List</h2>
+<table>
+    <tr>
+      <td>Device User Name:</td>
+      <td>
+        <input [(ngModel)]='InputDeviceUser' />
+      </td>
+     </tr> 
+    </table>    
+<table border='1'>
+        <button (click) ='getDevicesByUser(InputDeviceUser)'>ListDevices</button>
+  <tr><th>DeviceName</th><th> Model Number</th></tr>
+      <tr *ngFor='let Device of Devices'>
+        <td>{{Device.deviceName}}</td>  
+        <td>{{Device.deviceModelNumber}}</td>
+        
+    </tr>
+ </table>
+
+ 
+  

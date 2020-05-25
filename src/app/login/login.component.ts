@@ -1,27 +1,22 @@
-import { Component } from '@angular/core'
+import { Component, OnInit } from '@angular/core';
 import { HttpClientModule }    from '@angular/common/http'
 import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http'
 import { Injectable } from '@angular/core'
 import { Observable, throwError } from 'rxjs'
 import { retry, catchError } from 'rxjs/operators'
-import { userPostData } from './user-n-device-class'
-import {DevicePostData} from './user-n-device-class'
+import { userPostData } from '../user-n-device-class'
+import {DevicePostData} from '../user-n-device-class'
 import { error } from 'protractor'
-import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import {LoggedInUser} from '../user-n-device-class'
 
 
 @Component({
-  selector: 'app-root',
-    templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  selector: 'app-login',
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.css']
 })
+export class LoginComponent implements OnInit {
 
-
-
-export class AppComponent {
- 
-  LoggedInUser: string;
-  LoginStatus: boolean;
   InputUserName: string;
   InputPassword: string;
   InputUserMobileNumber: number;
@@ -32,6 +27,8 @@ export class AppComponent {
   InputDeviceModelNumber: string;
   InputDeviceUser:string;
 
+  LoginSuccess: boolean;
+  loginUSER: string; 
   
   
   // Define API
@@ -71,10 +68,13 @@ export class AppComponent {
    console.log('addStr2',addStr);
    this.http.get(this.apiURL + addStr) 
    .subscribe({
-    next: data=> console.log ("got user"),
+    next: data=> { this.loginUSER=userName; console.log (this.loginUSER);this.LoginSuccess = true;},
     error: error => {this.handleError(error,"UserName or password is incorrect");
                      this.InputUserName=undefined; 
-                     this.InputPassword=undefined;}}
+                     this.InputPassword=undefined;
+                     this.LoginSuccess = false; 
+                     this.loginUSER=null; }
+                    }
    )
     //.pipe(
      // retry(1),
@@ -82,6 +82,7 @@ export class AppComponent {
     //)
   }
   
+ 
   // HttpClient API get() method => Fetch User by ID
 //  getUserByID(UserId: number) {
 //     return this.http.get(this.apiURL + '/users/' + UserId)
@@ -164,4 +165,8 @@ handleError(error, errMsg: string) {
      return throwError(errorMessage);
 } 
 
+  ngOnInit(): void {
+  }
+
 }
+

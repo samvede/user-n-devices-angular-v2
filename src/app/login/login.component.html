@@ -1,0 +1,32 @@
+<h1>My User N Devices Micro Service Login Page</h1>
+<body style="background-color:skyblue;"></body>
+<table>
+    <tbody>
+        <tr>
+            <td colspan="2">
+                <hr />
+            </td>
+        </tr>
+        <tr>
+            <td>User Name</td>
+            <td><input [(ngModel)]='InputUserName' /></td>
+        </tr>
+        <tr>
+            <td>Password </td>
+            <td><input ng-hide="showpassword" type="password" ng-model="password" [(ngModel)]='InputPassword'/></td>
+        </tr>
+
+        <tr>
+            <td class='command' colspan="2">
+                  <button  (click)='getUserByName(InputUserName, InputPassword)'>Login</button>
+                  <div *ngIf="LoginSuccess"><p>{{InputUserName}} Logged In</p></div> 
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <hr />
+            </td>
+        </tr>
+        
+    </tbody>
+  </table>

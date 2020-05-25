@@ -12,16 +12,16 @@ export class userPostData{
     
   }
 
-  export class getUserUrlconstructor {
-    Name: string;
-    password: string;
-    getUserUrl: string;
-    constructor(Name: string, password: string){
-      this.Name = name;
-      this.password = password;
-      this.getUserUrl = "users/{name}/?name=Name&passwd={password}";
-    }
+  export class LoggedInUser {
+    userName: string;
+    loginStatus: boolean;
+    constructor(userName: string, status:boolean){
+        this.userName = userName;
+        this.loginStatus = status;
+    }      
+    
   }
+  export var userLoggedIn: string;
   
   export class DevicePostData {
     // Device parameters
@@ -29,5 +29,12 @@ export class userPostData{
     deviceId  : number; 
     deviceName: string;
     deviceModelNumber: string;
+
+    constructor(deviceId: number, deviceName: string, deviceModelNumber: string, userName: string){
+      this.deviceUser = userName;
+      this.deviceId = deviceId;
+      this.deviceModelNumber = deviceModelNumber;
+      this.deviceName = deviceName;
+    }
   }
   
