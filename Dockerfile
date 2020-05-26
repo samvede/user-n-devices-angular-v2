@@ -1,6 +1,6 @@
 # set working directory
 # base image
-FROM node:12.16.13 as build
+FROM node:12.16.3 as build
 
 
 # set working directory
