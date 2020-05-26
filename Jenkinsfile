@@ -4,7 +4,7 @@ pipeline{
       stage('build'){ 
         steps{ 
           echo 'building users ng app' 
-          dir('./'){ 
+          dir('src/app'){ 
           sh 'npm install '
 	  sh 'ng build --prod'
         } 
