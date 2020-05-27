@@ -28,8 +28,8 @@ export class SignUpComponent implements OnInit {
   
   
   // Define API
-   apiURL = 'http://localhost:8085';
-  
+  apiURL = 'http://rest-api-server.user-n-device-namespace.svc.cluster.local:8085';
+    
  
  constructor(private http: HttpClient) { }
  // constructor(private UserData: userPostData) { }
