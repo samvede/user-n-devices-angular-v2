@@ -32,7 +32,7 @@ export class LoginComponent implements OnInit {
   
   
   // Define API
-  apiURL = 'http://rest.user-n-device-namespace.svc.cluster.local:30001';
+  apiURL = 'http://104.198.186.33:30001';
   
  
  constructor(private http: HttpClient) { }
